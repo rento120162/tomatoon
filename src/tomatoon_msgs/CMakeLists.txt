@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(tomatoon_manipulation)
+project(tomatoon_msgs)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
