@@ -1,3 +1,21 @@
 tomato_tracker_node:
   ros__parameters:
     yolo_model: tomato.pt
+    input_topic: image_raw
+    result_topic: yolo_result
+    result_image_topic: yolo_image
+    conf_thres: 0.25
+    iou_thres: 0.45
+    max_det: 300
+    tracker: bytetrack.yaml
+    device: cpu
+    result_conf: True
+    result_line_width: 1
+    result_font_size: 1
+    result_font: Arial.ttf
+    result_labels: True
+    result_boxes: True
+
+v4l2_camera_node:
+  ros__parameters:
+    video_device: /dev/video2

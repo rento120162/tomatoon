@@ -12,7 +12,7 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     
     return LaunchDescription([     
-        DeclareLaunchArgument("yolo_model", default_value="yolov8n.pt"),
+        DeclareLaunchArgument("yolo_model", default_value="tomato.pt"),
         DeclareLaunchArgument("input_topic", default_value="image_raw"),
         DeclareLaunchArgument("result_topic", default_value="yolo_result"),
         DeclareLaunchArgument("result_image_topic", default_value="yolo_image"),
@@ -27,6 +27,7 @@ def generate_launch_description():
         DeclareLaunchArgument("result_font", default_value="Arial.ttf"),
         DeclareLaunchArgument("result_labels", default_value="True"),
         DeclareLaunchArgument("result_boxes", default_value="True"),
+        DeclareLaunchArgument("video_device", default_value="/dev/video0"),
         
         Node(
             package = 'ultralytics_ros',
@@ -36,8 +37,19 @@ def generate_launch_description():
             #namespace = 'namespace01',
             #remappings = [('YoloResult', 'YoloResult')]
             parameters=[{
-                "yolo_model":LaunchConfiguration("yolo_model"),
-                #PathJoinSubstitution([FindPackageShare("ultralytics_ros"), 'config', 'tomato_tracker.yaml'])
+                #"yolo_model":LaunchConfiguration("yolo_model"),
+                PathJoinSubstitution([FindPackageShare("ultralytics_ros"), 'config', 'tomato_tracker.yaml'])
+            }],
+        ),
+        Node(
+            package = 'v4l2_camera',
+            executable = 'v4l2_camera_node',
+            name = 'v4l2_camera_node',
+            output = 'screen',
+            #namespace = 'namespace01',
+            #remappings = [('YoloResult', 'YoloResult')]
+            parameters=[{
+                PathJoinSubstitution([FindPackageShare("ultralytics_ros"), 'config', 'tomato_tracker.yaml'])
             }],
         ),
     ])
