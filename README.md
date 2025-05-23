@@ -10,3 +10,5 @@ This is a repository for tomato-harvesting-robot
 - ultralytics-ros
 
 ## Houw to use
+Please refer this repository
+https://github.com/rento120162/ros2_workshop.git
