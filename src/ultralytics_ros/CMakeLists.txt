@@ -59,6 +59,7 @@ target_link_libraries(tracker_with_cloud_node "${cpp_typesupport_target}")
 
 install(TARGETS
   tracker_with_cloud_node
+  tomato_tracker_node
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -5,7 +5,7 @@ This is a repository for tomato-harvesting-robot
 - Ubuntu22.04
 - ROS2 Humble
 - Docker
-- micro-ros-PlatformIo
+- micro-ROS-PlatformIo
 - micro-ROS
 - ultralytics-ros
 

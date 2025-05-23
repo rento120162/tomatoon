@@ -18,6 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import cv_bridge
+import cv2 
 import numpy as np
 import rclpy
 from ament_index_python.packages import get_package_share_directory
@@ -31,14 +32,14 @@ from ultralytics_ros.msg import YoloResult
 class TrackerNode(Node):
     def __init__(self):
         super().__init__("tomato_tracker_node")
-        self.declare_parameter("yolo_model", "yolov8n.pt")
+        self.declare_parameter("yolo_model", "tomato.pt")
         self.declare_parameter("input_topic", "image_raw")
         self.declare_parameter("result_topic", "yolo_result")
         self.declare_parameter("result_image_topic", "yolo_image")
         self.declare_parameter("conf_thres", 0.25)
         self.declare_parameter("iou_thres", 0.45)
         self.declare_parameter("max_det", 300)
-        self.declare_parameter("classes", list(range(80)))
+        self.declare_parameter("classes", list(range(4)))
         self.declare_parameter("tracker", "bytetrack.yaml")
         self.declare_parameter("device", "cpu")
         self.declare_parameter("result_conf", True)
@@ -47,6 +48,7 @@ class TrackerNode(Node):
         self.declare_parameter("result_font", "Arial.ttf")
         self.declare_parameter("result_labels", True)
         self.declare_parameter("result_boxes", True)
+        self.declare_parameter("image_size", [640, 480])
 
         path = get_package_share_directory("ultralytics_ros")
         yolo_model = self.get_parameter("yolo_model").get_parameter_value().string_value
@@ -64,12 +66,17 @@ class TrackerNode(Node):
         result_image_topic = (
             self.get_parameter("result_image_topic").get_parameter_value().string_value
         )
+        
         self.create_subscription(Image, input_topic, self.image_callback, 1)
         self.results_pub = self.create_publisher(YoloResult, result_topic, 1)
         self.result_image_pub = self.create_publisher(Image, result_image_topic, 1)
 
     def image_callback(self, msg):
-        cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
+        image_size = (
+            self.get_parameter("image_size").get_parameter_value().integer_array_value
+        )
+        
+        cv_image = cv2.resize(self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8"), (image_size[0],image_size[1]))
 
         conf_thres = self.get_parameter("conf_thres").get_parameter_value().double_value
         iou_thres = self.get_parameter("iou_thres").get_parameter_value().double_value
