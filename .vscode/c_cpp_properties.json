@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/colcon_ws/install/v4l2_camera/include/**",
+        "/home/colcon_ws/install/ultralytics_ros/include/**",
+        "/home/colcon_ws/install/image_geometry/include/**",
+        "/home/colcon_ws/install/cv_bridge/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/colcon_ws/src/ros2_v4l2_camera/include/**",
+        "/home/colcon_ws/src/ultralytics_ros/include/**",
+        "/home/colcon_ws/src/vision_opencv/cv_bridge/include/**",
+        "/home/colcon_ws/src/vision_opencv/image_geometry/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

@@ -1,0 +1,18 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/colcon_ws/install/ultralytics_ros/local/lib/python3.10/dist-packages",
+        "/home/colcon_ws/install/opencv_tests/lib/python3.10/site-packages",
+        "/home/colcon_ws/install/image_geometry/local/lib/python3.10/dist-packages",
+        "/home/colcon_ws/install/cv_bridge/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/colcon_ws/install/ultralytics_ros/local/lib/python3.10/dist-packages",
+        "/home/colcon_ws/install/opencv_tests/lib/python3.10/site-packages",
+        "/home/colcon_ws/install/image_geometry/local/lib/python3.10/dist-packages",
+        "/home/colcon_ws/install/cv_bridge/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
